@@ -30,7 +30,7 @@ public class ImageViewer {
             "http://ns.adobe.com/xmp/extension/";
     
     public static void main(String[] args) throws Exception {
-        var file = "kid.vr.jpg";
+        var file = "W:\\VR180\\20180729JVMLS\\20180803-075356768.vr.jpg";
         var path = Path.of(file);
         var data = Files.readAllBytes(path);
         var bb = ByteBuffer.wrap(data)
@@ -72,13 +72,10 @@ public class ImageViewer {
         // skip to Gimage:Data
         var attrname = "GImage:Data=\"".getBytes();
         int of = 0;
-        int match = 0;
-        for (; of < gimagedata.length;) {
+        
+        for (int match = 0; of < gimagedata.length && match < attrname.length; ) {
             if (gimagedata[of++] != attrname[match++]) {
                 match = 0;
-            }
-            if (match == attrname.length) {
-                break;
             }
         }
         // skip to "
@@ -92,6 +89,8 @@ public class ImageViewer {
         // create image
         var rightImage = ImageIO.read(new ByteArrayInputStream(rightData));
         var leftImage = ImageIO.read(new ByteArrayInputStream(data));
+        //ImageIO.write(rightImage, "jpeg", new File("safeway_right.jpg"));
+        //ImageIO.write(leftImage, "jpeg", new File("safeway_left.jpg"));
         
         // show window
         var f = new JFrame("VR180");
