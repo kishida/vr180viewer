@@ -26,10 +26,10 @@ public class ImageViewer {
         
         // create image
         var rightImage = result[1];
-        var leftImage = result[2];
+        var leftImage = result[0];
         //ImageIO.write(rightImage, "jpeg", new File("safeway_right.jpg"));
         //ImageIO.write(leftImage, "jpeg", new File("safeway_left.jpg"));
-        
+
         // show window
         var f = new JFrame("VR180");
         f.setLayout(new GridLayout());
